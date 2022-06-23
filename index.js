@@ -27,11 +27,14 @@ mongoose.connection.on('connected', () => {
 });
 
 // middlewares
+app.use(express.json());
+
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/hotels', hotelsRoutes);
 app.use('/api/v1/rooms', roomsRoutes);
 
 app.listen(8800, () => {
+	connect();
 	console.log('Connected to server');
 });
