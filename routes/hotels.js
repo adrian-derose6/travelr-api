@@ -13,6 +13,7 @@ router.post('/', async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+
 //UPDATE
 router.put('/:hotelId', async (req, res) => {
 	try {
@@ -28,6 +29,7 @@ router.put('/:hotelId', async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+
 //DELETE
 router.delete('/:hotelId', async (req, res) => {
 	try {
@@ -37,6 +39,7 @@ router.delete('/:hotelId', async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+
 //GET
 router.get('/:hotelId', async (req, res) => {
 	try {
@@ -46,6 +49,7 @@ router.get('/:hotelId', async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+
 //GET ALL
 router.get('/', async (req, res) => {
 	try {
