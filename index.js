@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
 import usersRoutes from './routes/users.js';
@@ -11,6 +12,7 @@ const app = express();
 dotenv.config();
 
 // middlewares
+app.use(cookieParser());
 app.use(express.json());
 app.use(morgan('tiny'));
 
