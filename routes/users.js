@@ -5,12 +5,21 @@ import {
 	deleteUser,
 	getUser,
 	getUsers,
-} from '../controllers/hotel.js';
-import { verifyToken, verifyUser } from '../middleware/authorization.js';
+} from '../controllers/user.js';
+import { verifyUser, verifyAdmin } from '../middleware/authorization.js';
 
 const router = express.Router();
 
-router.route('/').post(createUser).get(getUsers);
-router.route('/userId').put(updateUser).delete(deleteUser).get(getUser);
+// UPDATE
+router.put('/:userId', verifyUser, updateUser);
+
+// DELETE
+router.delete('/userId', verifyUser, deleteUser);
+
+// GET
+router.get('/:userId', verifyUser, getUser);
+
+// GET ALL
+router.get('/', verifyAdmin, getUsers);
 
 export default router;

@@ -7,10 +7,23 @@ import {
 	getHotel,
 	getHotels,
 } from '../controllers/hotel.js';
+import { verifyAdmin } from '../middleware/authorization.js';
 
 const router = express.Router();
 
-router.route('/').post(createHotel).get(getHotels);
-router.route('/hotelId').put(updateHotel).delete(deleteHotel).get(getHotel);
+// CREATE
+router.post('/', verifyAdmin, createHotel);
+
+// UPDATE
+router.put('/:hotelId', verifyAdmin, updateHotel);
+
+// DELETE
+router.delete('/:hotelId', verifyAdmin, deleteHotel);
+
+// GET
+router.get('/:hotelId', getHotel);
+
+// GET ALL
+router.get('/', getHotels);
 
 export default router;
