@@ -1,5 +1,5 @@
 import Room from '../models/Room.js';
-import Room from '../models/Room.js';
+import Hotel from '../models/Hotel.js';
 import { createError } from '../utils/error.js';
 
 export const createRoom = async (req, res, next) => {
@@ -35,8 +35,14 @@ export const updateRoom = async (req, res, next) => {
 };
 
 export const deleteRoom = async (req, res, next) => {
+	const { hotelId, roomId } = req.params;
 	try {
-		await Room.findByIdAndDelete(req.params.roomId);
+		await Room.findByIdAndDelete(roomId);
+
+		await Hotel.findByIdAndUpdate(hotelId, {
+			$pull: { rooms: roomId },
+		});
+
 		res.status(200).json('Room has been deleted');
 	} catch (err) {
 		next(err);
