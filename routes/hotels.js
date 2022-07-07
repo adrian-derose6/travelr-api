@@ -6,10 +6,16 @@ import {
 	deleteHotel,
 	getHotel,
 	getHotels,
+	countByCity,
 } from '../controllers/hotel.js';
 import { verifyAdmin } from '../middleware/authorization.js';
 
 const router = express.Router();
+
+// GET ALL
+router.get('/', getHotels);
+router.get('/countByCity', countByCity);
+router.get('/countByType', getHotels);
 
 // CREATE
 router.post('/', verifyAdmin, createHotel);
@@ -22,8 +28,5 @@ router.delete('/:hotelId', verifyAdmin, deleteHotel);
 
 // GET
 router.get('/:hotelId', getHotel);
-
-// GET ALL
-router.get('/', getHotels);
 
 export default router;
