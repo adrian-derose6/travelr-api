@@ -3,6 +3,7 @@ import express from 'express';
 import {
 	createRoom,
 	updateRoom,
+	updateRoomAvailability,
 	deleteRoom,
 	getRoom,
 	getRooms,
@@ -16,6 +17,7 @@ router.post('/:hotelId', verifyAdmin, createRoom);
 
 // UPDATE
 router.put('/:roomId', verifyAdmin, updateRoom);
+router.put('/availability/:roomNumberId', updateRoomAvailability);
 
 // DELETE
 router.delete('/:roomId/:hotelId', verifyAdmin, deleteRoom);
